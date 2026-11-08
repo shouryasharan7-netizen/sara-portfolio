@@ -103,18 +103,18 @@ export function Hero() {
                 {hero.body}
               </motion.p>
 
-              {/* Quick Actions */}
-              <motion.div {...enter(0.8)} className="mt-8 flex flex-wrap items-center gap-5">
+              {/* Quick Actions — Full touch width on mobile, inline on desktop */}
+              <motion.div {...enter(0.8)} className="mt-8 flex w-full flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
                 <a
                   href="#films"
-                  className="inline-flex items-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-6 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_20px_rgba(255,59,48,0.35)] transition-all hover:bg-white hover:text-ink active:scale-95"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-6 py-3 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_20px_rgba(255,59,48,0.35)] transition-all hover:bg-white hover:text-ink active:scale-95"
                 >
                   <span>Explore Films</span>
                   <span aria-hidden>&rarr;</span>
                 </a>
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-2.5 text-xs font-semibold tracking-wider uppercase text-cream transition-all hover:border-gold-bright hover:text-gold-bright"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-white/25 px-6 py-3 text-xs font-semibold tracking-wider uppercase text-cream transition-all hover:border-gold-bright hover:text-gold-bright"
                 >
                   <span>Get in Touch</span>
                 </a>
@@ -125,8 +125,8 @@ export function Hero() {
               </motion.div>
             </div>
 
-            {/* Right Video Reel + Clean Margin Annotation */}
-            <div className="relative w-full max-w-[17rem] shrink-0 sm:max-w-[19rem] lg:w-[clamp(16rem,24vw,22rem)] lg:max-w-none">
+            {/* Right Video Reel + Clean Margin Annotation — Centered on mobile */}
+            <div className="relative mx-auto w-full max-w-[18rem] shrink-0 sm:max-w-[19rem] lg:mx-0 lg:w-[clamp(16rem,24vw,22rem)] lg:max-w-none">
               <motion.div
                 initial="hidden"
                 animate="visible"

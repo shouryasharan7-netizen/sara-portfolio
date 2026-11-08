@@ -151,7 +151,7 @@ export function ContactForm() {
           onChange={(e) => setName(e.target.value)}
           placeholder=" "
           required
-          className="peer w-full border-b border-rule-dark bg-transparent py-2.5 text-sm text-cream transition-colors outline-none focus:border-crimson-bright"
+          className="peer w-full border-b border-rule-dark bg-transparent py-2.5 text-base sm:text-sm text-cream transition-colors outline-none focus:border-crimson-bright"
         />
         <label
           htmlFor="contact-name"
@@ -170,7 +170,7 @@ export function ContactForm() {
           onChange={(e) => setEmail(e.target.value)}
           placeholder=" "
           required
-          className="peer w-full border-b border-rule-dark bg-transparent py-2.5 text-sm text-cream transition-colors outline-none focus:border-crimson-bright"
+          className="peer w-full border-b border-rule-dark bg-transparent py-2.5 text-base sm:text-sm text-cream transition-colors outline-none focus:border-crimson-bright"
         />
         <label
           htmlFor="contact-email"
@@ -193,7 +193,7 @@ export function ContactForm() {
                 key={type}
                 type="button"
                 onClick={() => setSubject(type)}
-                className={`rounded-full border px-3.5 py-1.5 text-xs transition-all ${
+                className={`min-h-[36px] rounded-full border px-3.5 py-1.5 text-xs transition-all ${
                   isSelected
                     ? "border-crimson-bright bg-crimson/15 text-crimson-bright font-medium shadow-[0_0_12px_rgba(255,59,48,0.2)]"
                     : "border-rule-dark bg-ink/40 text-muted hover:border-cream/40 hover:text-cream"
@@ -216,7 +216,7 @@ export function ContactForm() {
           placeholder=" "
           rows={3}
           required
-          className="peer w-full resize-none border-b border-rule-dark bg-transparent py-2.5 text-sm text-cream transition-colors outline-none focus:border-crimson-bright"
+          className="peer w-full resize-none border-b border-rule-dark bg-transparent py-2.5 text-base sm:text-sm text-cream transition-colors outline-none focus:border-crimson-bright"
         />
         <label
           htmlFor="contact-message"
@@ -231,12 +231,12 @@ export function ContactForm() {
         <p className="mb-4 text-xs font-medium text-crimson-bright">{errorMessage}</p>
       )}
 
-      {/* Submit Button */}
+      {/* Submit Button — Full touch width on mobile */}
       <div className="flex items-center justify-end">
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex items-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-6 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(255,59,48,0.35)] transition-all hover:bg-white hover:text-ink active:scale-95 disabled:opacity-50"
+          className="inline-flex min-h-[44px] w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-6 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(255,59,48,0.35)] transition-all hover:bg-white hover:text-ink active:scale-95 disabled:opacity-50"
         >
           {isSubmitting ? (
             <>

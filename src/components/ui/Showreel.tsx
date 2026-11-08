@@ -145,7 +145,7 @@ function ReelButton({ onClick, label, children }: ReelButtonProps) {
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="grid size-8 place-items-center rounded-full border border-white/20 bg-ink/75 text-cream backdrop-blur-md transition-all hover:border-crimson-bright hover:bg-crimson-bright hover:text-white active:scale-95"
+      className="grid size-10 min-w-[40px] min-h-[40px] place-items-center rounded-full border border-white/20 bg-ink/80 text-cream backdrop-blur-md transition-all hover:border-crimson-bright hover:bg-crimson-bright hover:text-white active:scale-90"
     >
       {children}
     </button>
@@ -156,7 +156,7 @@ const ICON_PROPS = {
   viewBox: "0 0 16 16",
   fill: "currentColor",
   "aria-hidden": true,
-  className: "size-3.5",
+  className: "size-4",
 } as const;
 
 function PlayIcon() {

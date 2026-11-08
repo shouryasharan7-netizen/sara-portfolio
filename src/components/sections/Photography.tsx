@@ -95,10 +95,10 @@ export function Photography() {
             </p>
           </div>
 
-          {/* Action & Control Console */}
-          <div className="flex items-center gap-3">
+          {/* Action & Control Console — Wraps cleanly on mobile */}
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3">
             {/* Live Frame Counter */}
-            <div className="flex items-center gap-2 rounded-full border border-white/10 bg-ink-soft/80 px-3.5 py-1.5 font-mono text-xs text-muted backdrop-blur-md">
+            <div className="flex items-center gap-2 rounded-full border border-white/10 bg-ink-soft/80 px-3 py-1.5 font-mono text-[0.72rem] sm:text-xs text-muted backdrop-blur-md">
               <span className="tally-dot" />
               <span className="font-medium text-cream">FRAME</span>
               <span className="font-bold text-crimson-bright">
@@ -113,7 +113,7 @@ export function Photography() {
               type="button"
               onClick={() => setIsAutoPlaying(!isAutoPlaying)}
               title={isAutoPlaying ? "Pause auto reel" : "Play auto reel"}
-              className={`flex items-center gap-1.5 rounded-full border px-3 py-1.5 font-mono text-xs font-medium uppercase transition-all ${
+              className={`flex min-h-[36px] items-center gap-1.5 rounded-full border px-3 py-1.5 font-mono text-[0.72rem] sm:text-xs font-medium uppercase transition-all ${
                 isAutoPlaying
                   ? "border-crimson-bright/40 bg-crimson-bright/10 text-crimson-bright"
                   : "border-white/15 bg-ink-soft text-muted hover:text-cream"
@@ -129,7 +129,7 @@ export function Photography() {
                 type="button"
                 onClick={handlePrev}
                 aria-label="Previous photograph"
-                className="grid size-8 place-items-center rounded-full border border-white/15 bg-ink-soft text-cream transition-all hover:border-crimson-bright hover:bg-crimson-bright hover:text-white active:scale-95"
+                className="grid size-9 min-w-[36px] min-h-[36px] place-items-center rounded-full border border-white/15 bg-ink-soft text-cream transition-all hover:border-crimson-bright hover:bg-crimson-bright hover:text-white active:scale-90"
               >
                 &larr;
               </button>
@@ -137,7 +137,7 @@ export function Photography() {
                 type="button"
                 onClick={handleNext}
                 aria-label="Next photograph"
-                className="grid size-8 place-items-center rounded-full border border-white/15 bg-ink-soft text-cream transition-all hover:border-crimson-bright hover:bg-crimson-bright hover:text-white active:scale-95"
+                className="grid size-9 min-w-[36px] min-h-[36px] place-items-center rounded-full border border-white/15 bg-ink-soft text-cream transition-all hover:border-crimson-bright hover:bg-crimson-bright hover:text-white active:scale-90"
               >
                 &rarr;
               </button>
@@ -153,9 +153,9 @@ export function Photography() {
         onMouseLeave={() => setIsHovered(false)}
       >
         {/* Filmstrip Sprockets Top Accent */}
-        <div className="flex h-3 w-full items-center justify-between border-y border-white/10 bg-black/40 px-2 opacity-50">
+        <div className="flex h-3 w-full items-center justify-between border-y border-white/10 bg-black/40 px-2 opacity-50 overflow-hidden">
           {Array.from({ length: 42 }).map((_, i) => (
-            <span key={i} className="h-1.5 w-2 rounded-xs border border-white/20 bg-white/5" />
+            <span key={i} className="h-1.5 w-2 shrink-0 rounded-xs border border-white/20 bg-white/5" />
           ))}
         </div>
 
@@ -163,7 +163,7 @@ export function Photography() {
         <div
           ref={reelRef}
           onScroll={handleScroll}
-          className="no-scrollbar flex w-full snap-x snap-mandatory gap-6 overflow-x-auto px-[var(--space-gutter)] py-6 scroll-smooth"
+          className="no-scrollbar flex w-full snap-x snap-mandatory gap-4 sm:gap-6 overflow-x-auto px-[var(--space-gutter)] py-6 scroll-smooth"
         >
           {images.map((img, i) => {
             const isCurrent = i === activeIndex;
@@ -172,7 +172,7 @@ export function Photography() {
               <div
                 key={img.src}
                 onClick={() => setOpenIndex(i)}
-                className={`group/card viewfinder-card relative w-[280px] shrink-0 cursor-pointer snap-center rounded-lg border bg-ink-soft transition-all duration-500 sm:w-[340px] md:w-[380px] ${
+                className={`group/card viewfinder-card relative w-[min(280px,78vw)] shrink-0 cursor-pointer snap-center rounded-lg border bg-ink-soft transition-all duration-500 sm:w-[340px] md:w-[380px] ${
                   isCurrent
                     ? "scale-[1.01] border-crimson-bright/70 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_24px_rgba(255,59,48,0.2)]"
                     : "border-white/10 hover:border-crimson-bright/50 hover:shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
@@ -234,9 +234,9 @@ export function Photography() {
         </div>
 
         {/* Filmstrip Sprockets Bottom Accent */}
-        <div className="flex h-3 w-full items-center justify-between border-y border-white/10 bg-black/40 px-2 opacity-50">
+        <div className="flex h-3 w-full items-center justify-between border-y border-white/10 bg-black/40 px-2 opacity-50 overflow-hidden">
           {Array.from({ length: 42 }).map((_, i) => (
-            <span key={i} className="h-1.5 w-2 rounded-xs border border-white/20 bg-white/5" />
+            <span key={i} className="h-1.5 w-2 shrink-0 rounded-xs border border-white/20 bg-white/5" />
           ))}
         </div>
       </div>

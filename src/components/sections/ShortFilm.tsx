@@ -59,21 +59,21 @@ export function ShortFilm() {
           ) : null}
         </div>
 
-        {/* Dual Elevated Call to Actions */}
+        {/* Dual Elevated Call to Actions — Full touch width on mobile */}
         <div className="mt-8 border-t border-white/10 pt-6">
-          <Reveal index={3} className="flex flex-wrap items-center gap-4">
+          <Reveal index={3} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
             <a
               href={shortFilm.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(255,59,48,0.3)] transition-all hover:bg-white hover:text-ink active:scale-95"
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(255,59,48,0.3)] transition-all hover:bg-white hover:text-ink active:scale-95 text-center"
             >
               <span>Watch Film</span>
               <span aria-hidden>&rarr;</span>
             </a>
             <a
               href="/writing/everything"
-              className="inline-flex items-center gap-2 rounded-full border border-white/25 bg-ink/50 px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-cream backdrop-blur-sm transition-all hover:border-gold-bright hover:text-gold-bright"
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-white/25 bg-ink/50 px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-cream backdrop-blur-sm transition-all hover:border-gold-bright hover:text-gold-bright text-center"
             >
               <span>Read Screenplay</span>
               <span aria-hidden>&rarr;</span>
