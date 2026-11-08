@@ -68,7 +68,7 @@ export function Screenplay({ source }: ScreenplayProps) {
         }
 
         return (
-          <p key={i} className="mt-4 max-w-[62ch] font-mono text-cream/75">
+          <p key={i} className="mt-4 max-w-[62ch] font-mono leading-relaxed text-cream/90">
             {block.text}
           </p>
         );

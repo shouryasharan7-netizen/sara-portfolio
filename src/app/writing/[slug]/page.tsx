@@ -59,35 +59,39 @@ export default async function WritingPage({
         <article className="mx-auto w-full max-w-3xl px-[var(--space-gutter)] py-[var(--space-section)]">
           <Link
             href={isScript ? "/writing#scripts" : "/writing#blogs"}
-            className="group u-eyebrow inline-flex items-center gap-2 text-cocoa-muted transition-colors duration-[var(--duration-fast)] hover:text-gold-deep"
+            className="group u-eyebrow inline-flex items-center gap-2 font-mono text-[0.75rem] font-semibold tracking-wider text-cocoa transition-colors duration-[var(--duration-fast)] hover:text-crimson-bright"
           >
             <span
               aria-hidden
               className="inline-block transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out-expo)] group-hover:-translate-x-1"
             >
-              ←
+              &larr;
             </span>
             {isScript ? "Scripts" : "Blogs"}
           </Link>
 
           <header className="mt-8 border-b border-[var(--color-rule-light)] pb-10">
             {isScript ? (
-              <p className="u-eyebrow text-gold-deep">{found.script.form}</p>
+              <p className="u-eyebrow font-mono text-[0.7rem] font-semibold tracking-widest text-crimson-bright uppercase">
+                {found.script.form}
+              </p>
             ) : null}
 
-            <h1 className="u-display mt-3 text-[length:clamp(2rem,1.4rem+2.6vw,3.25rem)] text-cocoa italic">
+            <h1 className="u-display mt-3 text-[length:clamp(2.2rem,1.4rem+2.6vw,3.5rem)] font-normal text-cocoa italic">
               <MaskedLines lines={[title]} delay={0.08} />
             </h1>
 
             <Reveal delay={0.3}>
-              <p className="max-w-[52ch] text-cocoa-muted mt-4">{standfirst}</p>
+              <p className="mt-4 max-w-[52ch] text-[length:var(--text-body)] font-normal leading-relaxed text-cocoa-muted">
+                {standfirst}
+              </p>
             </Reveal>
 
-            <p className="u-eyebrow mt-6 text-cocoa-muted">
-              Written by <span className="text-cocoa">Sara Dhandore</span>
+            <p className="u-eyebrow mt-6 font-mono text-[0.72rem] tracking-wider text-cocoa-muted">
+              Written by <span className="font-semibold text-cocoa">Sara Dhandore</span>
             </p>
 
-            <Doodle kind="underline" className="mt-4 w-20" />
+            <Doodle kind="underline" className="mt-4 w-20 text-crimson-bright opacity-85" />
           </header>
 
           <Reveal className="mt-12" delay={0.1}>

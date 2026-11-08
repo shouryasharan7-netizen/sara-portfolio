@@ -29,9 +29,9 @@
   --color-body: #E8E5DF;
   --color-muted: #B8B5AE;
 
-  /* Type on light blush sections */
-  --color-cocoa: #1E0F12;
-  --color-cocoa-muted: #5C4045;
+  /* Type on light blush sections — maximum contrast, rich obsidian-cocoa */
+  --color-cocoa: #14080A;
+  --color-cocoa-muted: #382025;
 
   /* Hairlines & Card Borders */
   --color-rule-dark: rgba(255, 255, 255, 0.14);
@@ -315,7 +315,25 @@ body {
   font-family: var(--font-display), ui-serif, Georgia, serif;
   font-weight: 400;
   line-height: 1.1;
-  color: var(--color-cream);
+  color: inherit;
+}
+
+/* Ensure headings & text inside light/blush sections are always deep, rich cocoa (never invisible white) */
+.bg-blush,
+.bg-blush .u-display,
+.bg-blush h1,
+.bg-blush h2,
+.bg-blush h3,
+.bg-blush h4 {
+  color: var(--color-cocoa);
+}
+
+.bg-blush .text-cocoa {
+  color: var(--color-cocoa);
+}
+
+.bg-blush .text-cocoa-muted {
+  color: var(--color-cocoa-muted);
 }
 
 /* Screenplay container & formatting */
@@ -331,17 +349,6 @@ body {
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(229, 57, 53, 0.06);
   border-radius: 8px;
   position: relative;
-}
-
-.screenplay-paper::before {
-  content: 'COURIER 12PT EQUIVALENT / PRODUCTION SCRIPT';
-  position: absolute;
-  top: 14px;
-  right: 20px;
-  font-family: var(--font-typewriter);
-  font-size: 0.65rem;
-  letter-spacing: 0.15em;
-  color: #8C8880;
 }
 
 @media (prefers-reduced-motion: reduce) {
