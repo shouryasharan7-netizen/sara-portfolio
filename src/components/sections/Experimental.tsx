@@ -1,12 +1,9 @@
-"use client";
-
 import { Reveal } from "@/components/motion/Reveal";
 import { Wipe } from "@/components/motion/Wipe";
 import { Doodle } from "@/components/ui/Doodle";
 import { Frame } from "@/components/ui/Frame";
 import { GoldLink } from "@/components/ui/GoldLink";
 import { SectionLabel } from "@/components/ui/SectionLabel";
-import { useCinema } from "@/components/ui/CinemaModal";
 import { experimental } from "@/content/site";
 
 /**
@@ -17,7 +14,6 @@ import { experimental } from "@/content/site";
  * its neighbour.
  */
 export function Experimental() {
-  const { openCinema } = useCinema();
 
   return (
     <section
@@ -60,11 +56,14 @@ export function Experimental() {
               <Wipe
                 index={i}
                 delay={0.08}
-                className="viewfinder-card relative mt-3 cursor-pointer overflow-hidden rounded-[2px] border border-cocoa/15 transition-all hover:border-crimson-bright"
+                className="viewfinder-card relative mt-3 overflow-hidden rounded-[2px] border border-cocoa/15 transition-all hover:border-crimson-bright group"
               >
-                <div
-                  onClick={() => openCinema({ title: film.title, href: film.href, genre: film.genre })}
-                  aria-label={`Watch ${film.title}`}
+                <a
+                  href={film.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Watch ${film.title} on YouTube`}
+                  className="block cursor-pointer"
                 >
                   <span className="vf-bracket vf-top-left" />
                   <span className="vf-bracket vf-top-right" />
@@ -76,15 +75,12 @@ export function Experimental() {
                     sizes="(max-width:768px) 45vw, 20vw"
                     className="aspect-[16/10] w-full transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out-expo)] group-hover:scale-[1.03]"
                   />
-                </div>
+                </a>
               </Wipe>
             ) : null}
 
             <Reveal index={i} delay={0.14} className="mt-4">
-              <GoldLink
-                onClick={() => openCinema({ title: film.title, href: film.href, genre: film.genre })}
-                onLight
-              >
+              <GoldLink href={film.href} onLight>
                 Watch
               </GoldLink>
             </Reveal>

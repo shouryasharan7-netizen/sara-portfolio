@@ -3,7 +3,6 @@ import localFont from "next/font/local";
 
 import { MotionProvider } from "@/components/motion/MotionProvider";
 import { ScrollProgress } from "@/components/motion/ScrollProgress";
-import { CinemaProvider } from "@/components/ui/CinemaModal";
 import "./globals.css";
 
 /*
@@ -140,20 +139,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       </head>
       <body className="relative flex min-h-full flex-col bg-ink text-cream">
         <MotionProvider>
-          <CinemaProvider>
-            {/* 35mm Analog Film Grain Overlay */}
-            <div className="film-grain pointer-events-none fixed inset-0 z-[9999] opacity-[0.038]" aria-hidden="true">
-              <svg viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
-                <filter id="filmGrainFilter">
-                  <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
-                  <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.8 0" />
-                </filter>
-                <rect width="100%" height="100%" filter="url(#filmGrainFilter)" />
-              </svg>
-            </div>
-            <ScrollProgress />
-            {children}
-          </CinemaProvider>
+          {/* 35mm Analog Film Grain Overlay */}
+          <div className="film-grain pointer-events-none fixed inset-0 z-[9999] opacity-[0.038]" aria-hidden="true">
+            <svg viewBox="0 0 400 400" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg">
+              <filter id="filmGrainFilter">
+                <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" stitchTiles="stitch" />
+                <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.8 0" />
+              </filter>
+              <rect width="100%" height="100%" filter="url(#filmGrainFilter)" />
+            </svg>
+          </div>
+          <ScrollProgress />
+          {children}
         </MotionProvider>
       </body>
     </html>
