@@ -12,11 +12,7 @@ type ShowreelProps = {
 
 /**
  * The showreel, playing in the margin of the hero.
- *
- * It behaves like a loop running on a monitor in the corner of an edit
- * suite: muted, continuous, no chrome until you reach for it. Sound and
- * playback are both reachable, and the loop pauses whenever it scrolls out
- * of view so it isn't burning battery below the fold.
+ * Clean, professional, elevated cinema monitor aesthetic.
  */
 export function Showreel({ src, label, className = "" }: ShowreelProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -25,18 +21,12 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
 
-  // Autoplay is applied here rather than via the attribute so the server and
-  // client render the same markup, and so reduced motion can opt out.
   useEffect(() => {
     const video = videoRef.current;
     if (!video || prefersReducedMotion) return;
-
-    // A blocked autoplay promise is not an error worth surfacing — the
-    // play control is already on screen.
     void video.play().catch(() => undefined);
   }, [prefersReducedMotion]);
 
-  // Only run the loop while it's actually on screen.
   useEffect(() => {
     const video = videoRef.current;
     if (!video || prefersReducedMotion) return;
@@ -77,20 +67,15 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
   };
 
   return (
-    <figure className={`viewfinder-card group relative ${className}`}>
-      {/* 4 L-shaped corner brackets */}
-      <span className="vf-bracket vf-top-left" />
-      <span className="vf-bracket vf-top-right" />
-      <span className="vf-bracket vf-bottom-left" />
-      <span className="vf-bracket vf-bottom-right" />
+    <figure className={`group relative ${className}`}>
+      {/* Sleek rounded cinema monitor container */}
+      <div className="viewfinder-card relative overflow-hidden rounded-lg border border-white/15 bg-ink-soft shadow-[0_24px_50px_rgba(0,0,0,0.6)] transition-all duration-300 hover:border-crimson-bright/70">
+        {/* Subtle camera corner viewfinder brackets on the frame */}
+        <span className="vf-bracket vf-top-left" />
+        <span className="vf-bracket vf-top-right" />
+        <span className="vf-bracket vf-bottom-left" />
+        <span className="vf-bracket vf-bottom-right" />
 
-      {/* Offset gold/crimson rule — the print sits slightly proud of its frame. */}
-      <span
-        aria-hidden
-        className="pointer-events-none absolute -bottom-2.5 -right-2.5 -top-2.5 left-2.5 border border-crimson/30 transition-colors group-hover:border-crimson-bright/60"
-      />
-
-      <div className="relative overflow-hidden bg-ink-soft shadow-[0_28px_60px_-26px_rgba(0,0,0,0.85)]">
         <video
           ref={videoRef}
           src={src}
@@ -104,14 +89,14 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
           className="aspect-[9/16] h-full w-full object-cover"
         />
 
-        {/* Grades the foot of the frame so the controls stay legible. */}
+        {/* Gradient scrim for control legibility */}
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(23,16,14,0.8)_0%,rgba(23,16,14,0)_100%)]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(20,20,24,0.9)_0%,transparent_100%)]"
         />
 
-        {/* Controls surface on hover and whenever focus lands inside. */}
-        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 p-3 opacity-0 transition-opacity duration-[var(--duration-normal)] ease-[var(--ease-out-expo)] group-hover:opacity-100 group-focus-within:opacity-100 max-md:opacity-100">
+        {/* Floating play & mute controls */}
+        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 p-3.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 max-md:opacity-100">
           <ReelButton
             onClick={togglePlay}
             label={isPlaying ? "Pause showreel" : "Play showreel"}
@@ -128,14 +113,21 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
         </div>
       </div>
 
-      <figcaption className="u-eyebrow mt-3 flex items-center justify-between text-cream/70">
+      {/* Clean, neat, professional monitor status bar */}
+      <figcaption className="mt-3.5 flex items-center justify-between px-0.5 text-muted">
         <div className="flex items-center gap-2.5">
-          <span className="tally-badge">
-            <span className="tally-dot" />
-            REC &bull; 24FPS
+          <span className="tally-dot" />
+          <span className="u-eyebrow text-[0.72rem] tracking-[0.16em] text-cream font-semibold">
+            Showreel
           </span>
-          <span className="text-cream font-medium tracking-[0.16em]">Showreel</span>
+          <span className="text-xs text-muted/50">&bull;</span>
+          <span className="font-mono text-[0.6875rem] tracking-wider text-muted/90">
+            Directing Cut
+          </span>
         </div>
+        <span className="font-mono text-[0.6875rem] tracking-wider text-gold-bright font-medium">
+          24 FPS
+        </span>
       </figcaption>
     </figure>
   );
@@ -153,7 +145,7 @@ function ReelButton({ onClick, label, children }: ReelButtonProps) {
       type="button"
       onClick={onClick}
       aria-label={label}
-      className="grid size-8 place-items-center rounded-full border border-cream/25 bg-ink/55 text-cream/80 backdrop-blur-sm transition-colors duration-[var(--duration-fast)] hover:border-gold hover:text-gold active:scale-95"
+      className="grid size-8 place-items-center rounded-full border border-white/20 bg-ink/75 text-cream backdrop-blur-md transition-all hover:border-crimson-bright hover:bg-crimson-bright hover:text-white active:scale-95"
     >
       {children}
     </button>

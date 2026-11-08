@@ -1,56 +1,57 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------
-   Design tokens — Cinema Darkroom + Radiant Crimson Contrast
-   Tuned for high-contrast cinematic elegance.
+   Design tokens — Elevated A24 Editorial / Modern Cinema Studio
+   High contrast, crystal clear readability, luminous crimson & gold.
    --------------------------------------------------------------- */
 :root {
-  /* Surfaces — Deep theatre obsidian & elevated darkroom cards */
-  --color-ink: #0A0A0C;
-  --color-ink-soft: #121216;
-  --color-wine: #260E14;
-  --color-wine-soft: #38141D;
-  --color-blush: #FAF0EB;
-  --color-blush-soft: #FFF7F3;
+  /* Surfaces — Lifted from flat pitch black to modern studio charcoal & obsidian */
+  --color-ink: #141418;
+  --color-ink-soft: #1E1E24;
+  --color-ink-card: #25252E;
+  --color-wine: #2B1218;
+  --color-wine-soft: #3B1822;
+  --color-blush: #F9F3EE;
+  --color-blush-soft: #FFFFFF;
 
-  /* Accents — 35mm Gold & Vivid Cinema Tally Crimson */
-  --color-gold: #D4A359;
-  --color-gold-bright: #F2C85B;
+  /* Accents — Vivid Cinema Crimson & Radiant 35mm Gold */
+  --color-crimson: #E53935;
+  --color-crimson-bright: #FF3B30;
+  --color-crimson-glow: rgba(255, 59, 48, 0.4);
+  --color-crimson-tint: rgba(255, 59, 48, 0.12);
+
+  --color-gold: #E5B869;
+  --color-gold-bright: #F7D088;
   --color-gold-deep: #8E651D;
 
-  /* Cinema Crimson / Tally Red (Bright, high-contrast focal points) */
-  --color-crimson: #E04F44;
-  --color-crimson-bright: #FF3B30;
-  --color-crimson-glow: rgba(255, 59, 48, 0.45);
-  --color-crimson-tint: rgba(224, 79, 68, 0.12);
+  /* Type — Crisp, brilliant, high-contrast readable */
+  --color-cream: #FFFFFF;
+  --color-body: #E8E5DF;
+  --color-muted: #B8B5AE;
 
-  /* Type on dark */
-  --color-cream: #F4F0EA;
-  --color-muted: #8E8C84;
-
-  /* Type on blush */
+  /* Type on light blush sections */
   --color-cocoa: #1E0F12;
-  --color-cocoa-muted: #66484D;
+  --color-cocoa-muted: #5C4045;
 
-  /* Hairlines */
-  --color-rule-dark: rgba(244, 240, 234, 0.12);
+  /* Hairlines & Card Borders */
+  --color-rule-dark: rgba(255, 255, 255, 0.14);
   --color-rule-light: rgba(30, 15, 18, 0.15);
-  --color-rule-crimson: rgba(255, 59, 48, 0.35);
+  --color-rule-crimson: rgba(255, 59, 48, 0.4);
 
   /* Type scale — fluid, editorial */
-  --text-eyebrow: 0.6875rem;
-  --text-label: 0.75rem;
-  --text-body: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
-  --text-title: clamp(1.5rem, 1.15rem + 1.5vw, 2.25rem);
-  --text-hero: clamp(2.75rem, 1.6rem + 4.6vw, 5.25rem);
+  --text-eyebrow: 0.75rem;
+  --text-label: 0.8125rem;
+  --text-body: clamp(0.9375rem, 0.9rem + 0.2vw, 1.0625rem);
+  --text-title: clamp(1.75rem, 1.35rem + 1.8vw, 2.75rem);
+  --text-hero: clamp(3rem, 1.8rem + 5vw, 5.75rem);
 
   /* Letterspacing for the small caps labels */
-  --tracking-eyebrow: 0.22em;
-  --tracking-nav: 0.16em;
+  --tracking-eyebrow: 0.18em;
+  --tracking-nav: 0.14em;
 
   /* Rhythm */
-  --space-section: clamp(3rem, 2rem + 4vw, 6rem);
-  --space-gutter: clamp(1.25rem, 0.8rem + 2vw, 3rem);
+  --space-section: clamp(3.5rem, 2.5rem + 4vw, 6.5rem);
+  --space-gutter: clamp(1.5rem, 1rem + 2.5vw, 3.5rem);
 
   /* Screenplays / Monospace */
   --font-typewriter: ui-monospace, "Courier New", Courier, monospace;
@@ -66,6 +67,7 @@
 @theme inline {
   --color-ink: var(--color-ink);
   --color-ink-soft: var(--color-ink-soft);
+  --color-ink-card: var(--color-ink-card);
   --color-wine: var(--color-wine);
   --color-wine-soft: var(--color-wine-soft);
   --color-blush: var(--color-blush);
@@ -76,6 +78,7 @@
   --color-crimson: var(--color-crimson);
   --color-crimson-bright: var(--color-crimson-bright);
   --color-cream: var(--color-cream);
+  --color-body: var(--color-body);
   --color-muted: var(--color-muted);
   --color-cocoa: var(--color-cocoa);
   --color-cocoa-muted: var(--color-cocoa-muted);
@@ -91,16 +94,16 @@
    --------------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 4.5rem;
+  scroll-padding-top: 5rem;
   background-color: var(--color-ink);
 }
 
 body {
   background: var(--color-ink);
-  color: var(--color-cream);
+  color: var(--color-body);
   font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
   font-size: var(--text-body);
-  line-height: 1.65;
+  line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   position: relative;
   overflow-x: hidden;
@@ -111,27 +114,16 @@ body {
   color: #FFFFFF;
 }
 
-/* 35mm Film Grain Overlay */
-.film-grain {
-  position: fixed;
-  inset: 0;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.038;
-}
-
-/* Ambient Radiant Spotlight with vivid crimson and amber warmth */
+/* Ambient Studio Light Mesh — Radiates warmth and kills the gloom */
 .ambient-glow {
   position: absolute;
   top: 0;
   left: 50%;
   transform: translateX(-50%);
   width: 100%;
-  max-width: 1300px;
-  height: 700px;
-  background: radial-gradient(circle at 50% 25%, rgba(255, 59, 48, 0.12) 0%, rgba(212, 163, 89, 0.09) 40%, transparent 70%);
+  max-width: 1400px;
+  height: 800px;
+  background: radial-gradient(circle at 50% 20%, rgba(229, 57, 53, 0.15) 0%, rgba(229, 184, 105, 0.1) 40%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -140,29 +132,29 @@ body {
 :focus-visible {
   outline: 2px solid var(--color-crimson-bright);
   outline-offset: 3px;
-  border-radius: 2px;
+  border-radius: 4px;
 }
 
 /* ---------------------------------------------------------------
-   Cinematic UI Graphics
+   Cinematic Studio Graphics & Elevating Details
    --------------------------------------------------------------- */
 
-/* Camera Viewfinder Brackets on Film Cards */
+/* Camera Viewfinder Brackets on Cards */
 .viewfinder-card {
   position: relative;
   transition: transform 0.4s var(--ease-cinematic), border-color 0.4s var(--ease-cinematic), box-shadow 0.4s var(--ease-cinematic);
 }
 
 .viewfinder-card:hover {
-  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 59, 48, 0.14);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 59, 48, 0.16);
 }
 
 .vf-bracket {
   position: absolute;
-  width: 10px;
-  height: 10px;
+  width: 12px;
+  height: 12px;
   border-color: var(--color-crimson-bright);
-  opacity: 0.35;
+  opacity: 0.45;
   pointer-events: none;
   z-index: 20;
   transition: transform 0.4s var(--ease-cinematic), opacity 0.4s var(--ease-cinematic);
@@ -201,33 +193,33 @@ body {
 }
 
 .viewfinder-card:hover .vf-top-left {
-  transform: translate(-4px, -4px);
+  transform: translate(-3px, -3px);
 }
 
 .viewfinder-card:hover .vf-top-right {
-  transform: translate(4px, -4px);
+  transform: translate(3px, -3px);
 }
 
 .viewfinder-card:hover .vf-bottom-left {
-  transform: translate(-4px, 4px);
+  transform: translate(-3px, 3px);
 }
 
 .viewfinder-card:hover .vf-bottom-right {
-  transform: translate(4px, 4px);
+  transform: translate(3px, 3px);
 }
 
-/* Live Tally Pulsing Monitor Indicator */
+/* Clean, Sleek Live Tally Indicator */
 .tally-badge {
   display: inline-flex;
   align-items: center;
-  gap: 7px;
-  background: rgba(255, 59, 48, 0.12);
-  border: 1px solid rgba(255, 59, 48, 0.4);
-  padding: 3px 10px;
+  gap: 6px;
+  background: rgba(229, 57, 53, 0.14);
+  border: 1px solid rgba(229, 57, 53, 0.4);
+  padding: 3px 9px;
   border-radius: 9999px;
   font-family: var(--font-typewriter);
   font-size: 0.6875rem;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.08em;
   text-transform: uppercase;
   color: #FFA29C;
 }
@@ -322,21 +314,22 @@ body {
 .u-display {
   font-family: var(--font-display), ui-serif, Georgia, serif;
   font-weight: 400;
-  line-height: 1.05;
+  line-height: 1.1;
+  color: var(--color-cream);
 }
 
 /* Screenplay container & formatting */
 .u-screenplay {
   font-family: var(--font-typewriter);
-  font-size: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
-  line-height: 1.7;
+  font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.975rem);
+  line-height: 1.75;
 }
 
 .screenplay-paper {
-  background-color: #121216;
-  border: 1px solid rgba(244, 240, 234, 0.1);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(224, 79, 68, 0.05);
-  border-radius: 6px;
+  background-color: #1A1A22;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(229, 57, 53, 0.06);
+  border-radius: 8px;
   position: relative;
 }
 
@@ -348,7 +341,7 @@ body {
   font-family: var(--font-typewriter);
   font-size: 0.65rem;
   letter-spacing: 0.15em;
-  color: #7A7870;
+  color: #8C8880;
 }
 
 @media (prefers-reduced-motion: reduce) {

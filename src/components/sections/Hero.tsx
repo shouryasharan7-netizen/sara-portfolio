@@ -26,13 +26,11 @@ export function Hero() {
     <section
       id="home"
       aria-labelledby="hero-heading"
-      className="relative isolate min-h-[clamp(30rem,78vh,46rem)] overflow-hidden"
+      className="relative isolate min-h-[clamp(32rem,80vh,50rem)] overflow-hidden"
     >
-      {/* Ambient Radiant Glow with vivid crimson/amber contrast */}
+      {/* Radiant ambient studio glow — lifts darkness and gives luminous depth */}
       <div className="ambient-glow" aria-hidden="true" />
 
-      {/* The scrims exist to hold copy off a photograph, so they only
-          appear alongside one. Without it the hero sits on bare ink. */}
       {hero.image ? (
         <>
           <Frame
@@ -44,46 +42,51 @@ export function Hero() {
           />
           <div
             aria-hidden
-            className="absolute inset-0 bg-[linear-gradient(to_right,rgba(23,16,14,0.85)_0%,rgba(23,16,14,0.6)_35%,rgba(23,16,14,0)_65%)]"
+            className="absolute inset-0 bg-[linear-gradient(to_right,rgba(20,20,24,0.85)_0%,rgba(20,20,24,0.6)_35%,transparent_65%)]"
           />
           <div
             aria-hidden
-            className="absolute inset-0 bg-[linear-gradient(to_top,rgba(23,16,14,0.75)_0%,rgba(23,16,14,0.15)_30%,rgba(23,16,14,0)_60%)]"
+            className="absolute inset-0 bg-[linear-gradient(to_top,rgba(20,20,24,0.75)_0%,rgba(20,20,24,0.15)_30%,transparent_60%)]"
           />
         </>
       ) : null}
 
-      <div className="relative z-10 flex min-h-[clamp(30rem,78vh,46rem)] items-center px-[var(--space-gutter)] py-[var(--space-section)]">
+      <div className="relative z-10 flex min-h-[clamp(32rem,80vh,50rem)] items-center px-[var(--space-gutter)] py-[var(--space-section)]">
         <div className="mx-auto w-full max-w-6xl">
-          <div className="flex flex-col items-start gap-[clamp(2.5rem,5vw,4.5rem)] lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex flex-col items-start gap-[clamp(2.5rem,5vw,5rem)] lg:flex-row lg:items-center lg:justify-between">
+            
+            {/* Left Headline & Bio Statement */}
             <div className="relative w-full max-w-2xl lg:w-fit">
-              <motion.p
+              <motion.div
                 {...enter(0.1)}
-                className="u-eyebrow flex flex-wrap items-center gap-x-[0.6em] text-cream/75"
+                className="flex items-center gap-2.5"
               >
-                <span>{eyebrowLead}</span>
-                {eyebrowRest.map((part) => (
-                  <span key={part} className="flex items-center gap-x-[0.6em]">
-                    <span aria-hidden className="text-gold">
-                      /
+                <span className="tally-dot" />
+                <p className="u-eyebrow flex flex-wrap items-center gap-x-[0.6em] font-semibold text-cream">
+                  <span>{eyebrowLead}</span>
+                  {eyebrowRest.map((part) => (
+                    <span key={part} className="flex items-center gap-x-[0.6em]">
+                      <span aria-hidden className="text-crimson-bright">
+                        /
+                      </span>
+                      <span>{part}</span>
                     </span>
-                    <span>{part}</span>
-                  </span>
-                ))}
-              </motion.p>
+                  ))}
+                </p>
+              </motion.div>
 
-              {/* The headline is uncovered line by line, like a title card. */}
+              {/* The headline is uncovered line by line */}
               <h1
                 id="hero-heading"
-                className="u-display mt-4 text-[length:var(--text-hero)] text-cream"
+                className="u-display mt-5 text-[length:var(--text-hero)] font-normal text-cream"
               >
                 <MaskedLines
                   delay={0.2}
                   lines={hero.titleLines.map((line, i) =>
                     i === hero.titleLines.length - 1 ? (
                       <>
-                        {line}
-                        <span className="text-gold">.</span>
+                        <span className="italic text-cream">{line}</span>
+                        <span className="text-crimson-bright">.</span>
                       </>
                     ) : (
                       line
@@ -92,29 +95,38 @@ export function Hero() {
                 />
               </h1>
 
+              {/* High contrast, crisp readable body */}
               <motion.p
-                {...enter(0.72)}
-                className="mt-5 max-w-[34ch] text-[length:var(--text-body)] text-cream/75"
+                {...enter(0.68)}
+                className="mt-6 max-w-[38ch] text-[length:var(--text-body)] leading-[1.75] text-cream/90"
               >
                 {hero.body}
               </motion.p>
 
-              <motion.div {...enter(0.82)}>
-                <Doodle kind="underline" className="mt-5 w-20" />
+              {/* Quick Actions */}
+              <motion.div {...enter(0.8)} className="mt-8 flex flex-wrap items-center gap-5">
+                <a
+                  href="#films"
+                  className="inline-flex items-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-6 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_20px_rgba(255,59,48,0.35)] transition-all hover:bg-white hover:text-ink active:scale-95"
+                >
+                  <span>Explore Films</span>
+                  <span aria-hidden>&rarr;</span>
+                </a>
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 rounded-full border border-white/25 px-6 py-2.5 text-xs font-semibold tracking-wider uppercase text-cream transition-all hover:border-gold-bright hover:text-gold-bright"
+                >
+                  <span>Get in Touch</span>
+                </a>
               </motion.div>
 
-              {/* Gold dot accent, trailing the headline block. */}
-              <motion.span
-                aria-hidden
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={transition(DURATION.slow, 1)}
-                className="absolute top-1/3 -right-6 hidden size-[10px] rounded-full bg-gold lg:block"
-              />
+              <motion.div {...enter(0.9)}>
+                <Doodle kind="underline" className="mt-7 w-24 text-crimson-bright opacity-70" />
+              </motion.div>
             </div>
 
-            {/* The reel, and the margin annotation that leans on it. */}
-            <div className="relative w-full max-w-[16rem] shrink-0 sm:max-w-[19rem] lg:w-[clamp(15rem,23vw,21rem)] lg:max-w-none">
+            {/* Right Video Reel + Clean Margin Annotation */}
+            <div className="relative w-full max-w-[17rem] shrink-0 sm:max-w-[19rem] lg:w-[clamp(16rem,24vw,22rem)] lg:max-w-none">
               <motion.div
                 initial="hidden"
                 animate="visible"
@@ -124,25 +136,20 @@ export function Hero() {
                 <Showreel src={hero.reel} label={hero.reelAlt} />
               </motion.div>
 
+              {/* Cleanly positioned margin note — placed beneath the showreel without overlapping */}
               <motion.div
                 {...enter(0.95)}
-                className="mt-6 lg:absolute lg:bottom-6 lg:left-0 lg:mt-0 lg:w-48 lg:-translate-x-[88%]"
+                className="mt-5 flex items-center justify-end gap-2 pr-1"
               >
                 <ScriptNote
                   text={hero.note}
-                  rotate={-14}
-                  className="text-[length:clamp(1.5rem,1.1rem+1.4vw,1.875rem)]"
+                  rotate={-4}
+                  className="text-right text-lg text-gold-bright"
                 />
-                <Doodle
-                  kind="underline"
-                  className="mt-2 w-16 translate-x-2 -rotate-[10deg]"
-                />
-                <Doodle
-                  kind="underline"
-                  className="mt-1 w-16 translate-x-8 -rotate-[16deg] opacity-70"
-                />
+                <Doodle kind="star" className="w-5 text-crimson-bright shrink-0 -rotate-12" />
               </motion.div>
             </div>
+
           </div>
         </div>
       </div>
