@@ -52,7 +52,11 @@ export function Experimental() {
             </Reveal>
 
             {film.poster ? (
-              <Wipe index={i} delay={0.08} className="mt-3 overflow-hidden">
+              <Wipe index={i} delay={0.08} className="viewfinder-card relative mt-3 overflow-hidden rounded-[2px] border border-cocoa/15 transition-all hover:border-crimson-bright">
+                <span className="vf-bracket vf-top-left" />
+                <span className="vf-bracket vf-top-right" />
+                <span className="vf-bracket vf-bottom-left" />
+                <span className="vf-bracket vf-bottom-right" />
                 <Frame
                   src={film.poster}
                   alt={film.posterAlt}

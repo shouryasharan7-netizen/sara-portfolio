@@ -65,7 +65,7 @@ function WritingColumn({ heading, href, items }: WritingColumnProps) {
   return (
     <div>
       <Reveal>
-        <h3 className="u-eyebrow text-gold">{heading}</h3>
+        <h3 className="u-eyebrow text-crimson-bright font-semibold">{heading}</h3>
       </Reveal>
 
       <ul className="mt-5 divide-y divide-[var(--color-rule-dark)] border-t border-[var(--color-rule-dark)]">
@@ -76,12 +76,12 @@ function WritingColumn({ heading, href, items }: WritingColumnProps) {
               className="group block py-4 focus-visible:outline-offset-4"
             >
               <span className="flex items-baseline justify-between gap-4">
-                <span className="u-display text-lg text-cream italic transition-colors duration-[var(--duration-normal)] group-hover:text-gold">
+                <span className="u-display text-lg text-cream italic transition-colors duration-[var(--duration-normal)] group-hover:text-crimson-bright">
                   {item.title}
                 </span>
                 <span
                   aria-hidden
-                  className="shrink-0 text-gold transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out-expo)] group-hover:translate-x-1"
+                  className="shrink-0 text-gold-bright transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-expo)] group-hover:translate-x-1.5 group-hover:text-crimson-bright"
                 >
                   →
                 </span>

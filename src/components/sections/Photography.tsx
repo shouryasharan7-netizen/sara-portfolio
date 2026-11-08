@@ -46,12 +46,12 @@ export function Photography() {
         <Reveal index={1} as="div" className="mt-3">
           <Link
             href={photography.leadHref}
-            className="group inline-flex w-fit items-center gap-1.5 text-[0.8125rem] text-cream/80"
+            className="group inline-flex w-fit items-center gap-1.5 text-[0.8125rem] text-cream/80 transition-colors hover:text-crimson-bright"
           >
             {photography.lead}
             <span
               aria-hidden
-              className="inline-block text-gold transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out-expo)] group-hover:translate-x-1"
+              className="inline-block text-gold-bright transition-all duration-[var(--duration-normal)] ease-[var(--ease-out-expo)] group-hover:translate-x-1.5 group-hover:text-crimson-bright"
             >
               →
             </span>

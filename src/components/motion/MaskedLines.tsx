@@ -46,7 +46,7 @@ export function MaskedLines({
             transition={transition(DURATION.cinematic)}
             className={`block ${lineClassName}`}
           >
-            {line}
+            {line}{" "}
           </motion.span>
         </span>
       ))}

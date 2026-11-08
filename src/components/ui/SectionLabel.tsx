@@ -30,9 +30,12 @@ export function SectionLabel({
   return (
     <div className={className}>
       <span
-        className={`u-eyebrow block ${onLight ? "text-gold-deep" : "text-gold"}`}
+        className={`u-eyebrow flex items-center gap-2 font-mono text-[0.7rem] ${
+          onLight ? "text-crimson-bright font-semibold" : "text-crimson-bright font-semibold"
+        }`}
       >
-        {index}
+        <span>{index}</span>
+        <span className="inline-block h-px w-3 bg-crimson-bright opacity-80" />
       </span>
       {label ? (
         <h2

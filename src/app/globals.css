@@ -1,38 +1,41 @@
 @import "tailwindcss";
 
 /* ---------------------------------------------------------------
-   Design tokens — sampled from the approved mockup.
-   Everything visual derives from here. Do not hardcode palette
-   values in components.
+   Design tokens — Cinema Darkroom + Radiant Crimson Contrast
+   Tuned for high-contrast cinematic elegance.
    --------------------------------------------------------------- */
 :root {
-  /* Surfaces */
-  --color-ink: #17100e;
-  --color-ink-soft: #211714;
-  --color-wine: #3d1620;
-  --color-wine-soft: #4a1c28;
-  --color-blush: #f7e4dd;
-  --color-blush-soft: #fbeee9;
+  /* Surfaces — Deep theatre obsidian & elevated darkroom cards */
+  --color-ink: #0A0A0C;
+  --color-ink-soft: #121216;
+  --color-wine: #260E14;
+  --color-wine-soft: #38141D;
+  --color-blush: #FAF0EB;
+  --color-blush-soft: #FFF7F3;
 
-  /* Accent.
-     `gold` is tuned for the dark surfaces. On the blush sections it drops to
-     1.5:1 against the background, so light surfaces use `gold-deep` instead —
-     same bronze family, 5.1:1, clears WCAG AA for body text. */
-  --color-gold: #e9b44a;
-  --color-gold-bright: #f2c85b;
-  --color-gold-deep: #7d5a12;
+  /* Accents — 35mm Gold & Vivid Cinema Tally Crimson */
+  --color-gold: #D4A359;
+  --color-gold-bright: #F2C85B;
+  --color-gold-deep: #8E651D;
+
+  /* Cinema Crimson / Tally Red (Bright, high-contrast focal points) */
+  --color-crimson: #E04F44;
+  --color-crimson-bright: #FF3B30;
+  --color-crimson-glow: rgba(255, 59, 48, 0.45);
+  --color-crimson-tint: rgba(224, 79, 68, 0.12);
 
   /* Type on dark */
-  --color-cream: #f3e9e5;
-  --color-muted: #bfaca6;
+  --color-cream: #F4F0EA;
+  --color-muted: #8E8C84;
 
   /* Type on blush */
-  --color-cocoa: #2a1418;
-  --color-cocoa-muted: #6d4c4c;
+  --color-cocoa: #1E0F12;
+  --color-cocoa-muted: #66484D;
 
   /* Hairlines */
-  --color-rule-dark: color-mix(in oklab, var(--color-cream) 14%, transparent);
-  --color-rule-light: color-mix(in oklab, var(--color-cocoa) 16%, transparent);
+  --color-rule-dark: rgba(244, 240, 234, 0.12);
+  --color-rule-light: rgba(30, 15, 18, 0.15);
+  --color-rule-crimson: rgba(255, 59, 48, 0.35);
 
   /* Type scale — fluid, editorial */
   --text-eyebrow: 0.6875rem;
@@ -49,8 +52,7 @@
   --space-section: clamp(3rem, 2rem + 4vw, 6rem);
   --space-gutter: clamp(1.25rem, 0.8rem + 2vw, 3rem);
 
-  /* Screenplays are set in Courier by convention — system faces only, so
-     the reading pages cost no extra webfont. */
+  /* Screenplays / Monospace */
   --font-typewriter: ui-monospace, "Courier New", Courier, monospace;
 
   /* Motion */
@@ -58,6 +60,7 @@
   --duration-normal: 320ms;
   --duration-slow: 620ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-cinematic: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 @theme inline {
@@ -70,6 +73,8 @@
   --color-gold: var(--color-gold);
   --color-gold-bright: var(--color-gold-bright);
   --color-gold-deep: var(--color-gold-deep);
+  --color-crimson: var(--color-crimson);
+  --color-crimson-bright: var(--color-crimson-bright);
   --color-cream: var(--color-cream);
   --color-muted: var(--color-muted);
   --color-cocoa: var(--color-cocoa);
@@ -86,8 +91,8 @@
    --------------------------------------------------------------- */
 html {
   scroll-behavior: smooth;
-  /* Header is sticky; keep anchor targets clear of it. */
   scroll-padding-top: 4.5rem;
+  background-color: var(--color-ink);
 }
 
 body {
@@ -97,13 +102,200 @@ body {
   font-size: var(--text-body);
   line-height: 1.65;
   -webkit-font-smoothing: antialiased;
+  position: relative;
+  overflow-x: hidden;
 }
 
-/* Visible, on-brand keyboard focus everywhere. */
+::selection {
+  background-color: var(--color-crimson-bright);
+  color: #FFFFFF;
+}
+
+/* 35mm Film Grain Overlay */
+.film-grain {
+  position: fixed;
+  inset: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.038;
+}
+
+/* Ambient Radiant Spotlight with vivid crimson and amber warmth */
+.ambient-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1300px;
+  height: 700px;
+  background: radial-gradient(circle at 50% 25%, rgba(255, 59, 48, 0.12) 0%, rgba(212, 163, 89, 0.09) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Visible keyboard focus with bright crimson contrast */
 :focus-visible {
-  outline: 2px solid var(--color-gold);
+  outline: 2px solid var(--color-crimson-bright);
   outline-offset: 3px;
   border-radius: 2px;
+}
+
+/* ---------------------------------------------------------------
+   Cinematic UI Graphics
+   --------------------------------------------------------------- */
+
+/* Camera Viewfinder Brackets on Film Cards */
+.viewfinder-card {
+  position: relative;
+  transition: transform 0.4s var(--ease-cinematic), border-color 0.4s var(--ease-cinematic), box-shadow 0.4s var(--ease-cinematic);
+}
+
+.viewfinder-card:hover {
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.6), 0 0 24px rgba(255, 59, 48, 0.14);
+}
+
+.vf-bracket {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: var(--color-crimson-bright);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 20;
+  transition: transform 0.4s var(--ease-cinematic), opacity 0.4s var(--ease-cinematic);
+}
+
+.vf-top-left {
+  top: -1px;
+  left: -1px;
+  border-top: 2px solid var(--color-crimson-bright);
+  border-left: 2px solid var(--color-crimson-bright);
+}
+
+.vf-top-right {
+  top: -1px;
+  right: -1px;
+  border-top: 2px solid var(--color-crimson-bright);
+  border-right: 2px solid var(--color-crimson-bright);
+}
+
+.vf-bottom-left {
+  bottom: -1px;
+  left: -1px;
+  border-bottom: 2px solid var(--color-crimson-bright);
+  border-left: 2px solid var(--color-crimson-bright);
+}
+
+.vf-bottom-right {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 2px solid var(--color-crimson-bright);
+  border-right: 2px solid var(--color-crimson-bright);
+}
+
+.viewfinder-card:hover .vf-bracket {
+  opacity: 1;
+}
+
+.viewfinder-card:hover .vf-top-left {
+  transform: translate(-4px, -4px);
+}
+
+.viewfinder-card:hover .vf-top-right {
+  transform: translate(4px, -4px);
+}
+
+.viewfinder-card:hover .vf-bottom-left {
+  transform: translate(-4px, 4px);
+}
+
+.viewfinder-card:hover .vf-bottom-right {
+  transform: translate(4px, 4px);
+}
+
+/* Live Tally Pulsing Monitor Indicator */
+.tally-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: rgba(255, 59, 48, 0.12);
+  border: 1px solid rgba(255, 59, 48, 0.4);
+  padding: 3px 10px;
+  border-radius: 9999px;
+  font-family: var(--font-typewriter);
+  font-size: 0.6875rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #FFA29C;
+}
+
+.tally-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--color-crimson-bright);
+  box-shadow: 0 0 10px var(--color-crimson-glow);
+  animation: tally-pulse 1.8s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes tally-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.35;
+    transform: scale(0.8);
+  }
+}
+
+/* Magnetic "Watch →" Link */
+.watch-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-eyebrow);
+  text-transform: uppercase;
+  color: var(--color-cream);
+  position: relative;
+  padding-bottom: 2px;
+  transition: color var(--duration-fast) ease;
+}
+
+.watch-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1.5px;
+  background-color: var(--color-crimson-bright);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--duration-normal) var(--ease-out-expo);
+}
+
+.watch-link:hover {
+  color: var(--color-crimson-bright);
+}
+
+.watch-link:hover::after {
+  transform: scaleX(1);
+}
+
+.watch-link .arrow {
+  display: inline-block;
+  transition: transform var(--duration-normal) var(--ease-out-expo), color var(--duration-fast) ease;
+}
+
+.watch-link:hover .arrow {
+  transform: translateX(4px);
+  color: var(--color-crimson-bright);
 }
 
 /* ---------------------------------------------------------------
@@ -118,11 +310,11 @@ body {
   font-weight: 500;
 }
 
-/* The gold handwritten annotations scattered around the page. */
+/* Handwritten annotations */
 .u-script {
   font-family: var(--font-script), cursive;
-  color: var(--color-gold);
-  line-height: 1.15;
+  color: var(--color-gold-bright);
+  line-height: 1.25;
   font-weight: 500;
 }
 
@@ -133,11 +325,30 @@ body {
   line-height: 1.05;
 }
 
-/* The script pages: Courier, and the indents the form expects. */
+/* Screenplay container & formatting */
 .u-screenplay {
   font-family: var(--font-typewriter);
   font-size: clamp(0.8125rem, 0.78rem + 0.15vw, 0.9375rem);
   line-height: 1.7;
+}
+
+.screenplay-paper {
+  background-color: #121216;
+  border: 1px solid rgba(244, 240, 234, 0.1);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7), 0 0 30px rgba(224, 79, 68, 0.05);
+  border-radius: 6px;
+  position: relative;
+}
+
+.screenplay-paper::before {
+  content: 'COURIER 12PT EQUIVALENT / PRODUCTION SCRIPT';
+  position: absolute;
+  top: 14px;
+  right: 20px;
+  font-family: var(--font-typewriter);
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  color: #7A7870;
 }
 
 @media (prefers-reduced-motion: reduce) {

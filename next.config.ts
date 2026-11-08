@@ -28,11 +28,11 @@ const contentSecurityPolicy = [
   "img-src 'self' data: blob:",
   "media-src 'self'",
   "font-src 'self'",
-  "connect-src 'self'",
+  "connect-src 'self' https://api.web3forms.com",
   "frame-src 'none'",
   "object-src 'none'",
   "base-uri 'self'",
-  "form-action 'self'",
+  "form-action 'self' https://api.web3forms.com",
   "frame-ancestors 'none'",
   "upgrade-insecure-requests",
 ].join("; ");

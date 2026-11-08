@@ -31,16 +31,18 @@ export function GoldLink({
   onLight = false,
   className = "",
 }: GoldLinkProps) {
-  const tone = onLight ? "text-gold-deep" : "text-gold";
+  const tone = onLight
+    ? "text-gold-deep hover:text-crimson-bright"
+    : "text-gold hover:text-crimson-bright";
   const rule = onLight ? "bg-gold-deep" : "bg-gold";
-  const ruleHover = onLight ? "bg-gold-deep" : "bg-gold-bright";
+  const ruleHover = onLight ? "bg-crimson-bright" : "bg-crimson-bright";
 
   const inner = (
     <>
-      <span className="u-eyebrow">{children}</span>
+      <span className="u-eyebrow transition-colors">{children}</span>
       <span
         aria-hidden
-        className="u-eyebrow inline-block transition-transform duration-[var(--duration-fast)] ease-[var(--ease-out-expo)] group-hover:translate-x-1"
+        className="u-eyebrow inline-block transition-all duration-[var(--duration-fast)] ease-[var(--ease-out-expo)] group-hover:translate-x-1.5 group-hover:text-crimson-bright"
       >
         →
       </span>

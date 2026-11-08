@@ -77,11 +77,17 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
   };
 
   return (
-    <figure className={`group relative ${className}`}>
-      {/* Offset gold rule — the print sits slightly proud of its frame. */}
+    <figure className={`viewfinder-card group relative ${className}`}>
+      {/* 4 L-shaped corner brackets */}
+      <span className="vf-bracket vf-top-left" />
+      <span className="vf-bracket vf-top-right" />
+      <span className="vf-bracket vf-bottom-left" />
+      <span className="vf-bracket vf-bottom-right" />
+
+      {/* Offset gold/crimson rule — the print sits slightly proud of its frame. */}
       <span
         aria-hidden
-        className="pointer-events-none absolute -bottom-2.5 -right-2.5 -top-2.5 left-2.5 border border-gold/40"
+        className="pointer-events-none absolute -bottom-2.5 -right-2.5 -top-2.5 left-2.5 border border-crimson/30 transition-colors group-hover:border-crimson-bright/60"
       />
 
       <div className="relative overflow-hidden bg-ink-soft shadow-[0_28px_60px_-26px_rgba(0,0,0,0.85)]">
@@ -122,12 +128,14 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
         </div>
       </div>
 
-      <figcaption className="u-eyebrow mt-3 flex items-center gap-2 text-cream/55">
-        <span
-          aria-hidden
-          className={`size-[5px] rounded-full ${isPlaying ? "bg-gold" : "bg-cream/30"}`}
-        />
-        Showreel
+      <figcaption className="u-eyebrow mt-3 flex items-center justify-between text-cream/70">
+        <div className="flex items-center gap-2.5">
+          <span className="tally-badge">
+            <span className="tally-dot" />
+            REC &bull; 24FPS
+          </span>
+          <span className="text-cream font-medium tracking-[0.16em]">Showreel</span>
+        </div>
       </figcaption>
     </figure>
   );

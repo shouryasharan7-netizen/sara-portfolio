@@ -28,6 +28,9 @@ export function Hero() {
       aria-labelledby="hero-heading"
       className="relative isolate min-h-[clamp(30rem,78vh,46rem)] overflow-hidden"
     >
+      {/* Ambient Radiant Glow with vivid crimson/amber contrast */}
+      <div className="ambient-glow" aria-hidden="true" />
+
       {/* The scrims exist to hold copy off a photograph, so they only
           appear alongside one. Without it the hero sits on bare ink. */}
       {hero.image ? (

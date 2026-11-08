@@ -21,7 +21,7 @@ export function ScriptNote({ text, rotate = -8, className = "" }: ScriptNoteProp
     >
       {text.split("\n").map((line, i) => (
         <span key={i} className="block">
-          {line}
+          {line}{" "}
         </span>
       ))}
     </p>

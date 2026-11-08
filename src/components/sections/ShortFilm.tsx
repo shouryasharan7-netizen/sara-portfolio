@@ -20,10 +20,16 @@ export function ShortFilm() {
     <section
       id="films"
       aria-labelledby="short-film-title"
-      className={`group grid h-full grid-cols-1 bg-wine ${
+      className={`viewfinder-card relative group grid h-full grid-cols-1 bg-wine border border-crimson/25 transition-all hover:border-crimson-bright/60 ${
         shortFilm.poster ? "md:grid-cols-2" : ""
       }`}
     >
+      {/* 4 L-shaped corner brackets */}
+      <span className="vf-bracket vf-top-left" />
+      <span className="vf-bracket vf-top-right" />
+      <span className="vf-bracket vf-bottom-left" />
+      <span className="vf-bracket vf-bottom-right" />
+
       <div className="flex flex-col justify-center p-[var(--space-gutter)] py-[calc(var(--space-gutter)*1.5)]">
         <Reveal>
           <SectionLabel index="01" label="Short film" />
@@ -58,8 +64,14 @@ export function ShortFilm() {
           </Reveal>
         ) : null}
 
-        <Reveal index={3} className="mt-6">
+        <Reveal index={3} className="mt-6 flex flex-wrap items-center gap-6">
           <GoldLink href={shortFilm.href}>Watch</GoldLink>
+          <a
+            href="/writing/everything"
+            className="watch-link text-[length:var(--text-label)] font-medium text-gold-bright hover:text-crimson-bright"
+          >
+            Read Script <span className="arrow">&rarr;</span>
+          </a>
         </Reveal>
 
         {/* Hand-drawn accent, tucked under the call to action. */}
