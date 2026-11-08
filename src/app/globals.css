@@ -135,6 +135,15 @@ body {
   border-radius: 4px;
 }
 
+/* Hide scrollbar for clean horizontal filmstrip */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
 /* ---------------------------------------------------------------
    Cinematic Studio Graphics & Elevating Details
    --------------------------------------------------------------- */
@@ -341,14 +350,6 @@ body {
   font-family: var(--font-typewriter);
   font-size: clamp(0.875rem, 0.85rem + 0.15vw, 0.975rem);
   line-height: 1.75;
-}
-
-.screenplay-paper {
-  background-color: #1A1A22;
-  border: 1px solid rgba(255, 255, 255, 0.12);
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.5), 0 0 30px rgba(229, 57, 53, 0.06);
-  border-radius: 8px;
-  position: relative;
 }
 
 @media (prefers-reduced-motion: reduce) {

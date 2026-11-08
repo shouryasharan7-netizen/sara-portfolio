@@ -13,13 +13,13 @@ export function Screenplay({ source }: ScreenplayProps) {
   const blocks = parseScreenplay(source);
 
   return (
-    <div className="screenplay-paper u-screenplay my-8 p-6 text-cream sm:p-12">
+    <div className="u-screenplay my-8 max-w-3xl border-t border-[var(--color-rule-light)] pt-10 text-cocoa">
       {blocks.map((block, i) => {
         if (block.kind === "scene") {
           return (
             <h2
               key={i}
-              className="mt-10 mb-4 flex items-center border-l-2 border-crimson-bright pl-3 font-mono font-bold tracking-[0.08em] text-cream uppercase first:mt-0"
+              className="mt-10 mb-4 flex items-center border-l-[3px] border-crimson-bright pl-3.5 font-mono text-[0.95rem] font-bold tracking-[0.08em] text-cocoa uppercase first:mt-0"
             >
               {block.text}
             </h2>
@@ -30,7 +30,7 @@ export function Screenplay({ source }: ScreenplayProps) {
           return (
             <p
               key={i}
-              className="mt-6 mb-6 text-right font-mono font-bold tracking-[0.1em] text-crimson-bright uppercase"
+              className="mt-8 mb-6 text-right font-mono text-[0.9rem] font-bold tracking-[0.12em] text-crimson-bright uppercase"
             >
               {block.text}
             </p>
@@ -41,7 +41,7 @@ export function Screenplay({ source }: ScreenplayProps) {
           return (
             <p
               key={i}
-              className="my-8 text-center font-mono tracking-[0.15em] text-gold-bright uppercase"
+              className="my-10 text-center font-mono text-base font-bold tracking-[0.16em] text-gold-deep uppercase"
             >
               {block.text}
             </p>
@@ -50,25 +50,27 @@ export function Screenplay({ source }: ScreenplayProps) {
 
         if (block.kind === "dialogue") {
           return (
-            <div key={i} className="mx-auto mt-6 max-w-[24rem] sm:ml-[18%]">
+            <div key={i} className="mx-auto mt-6 max-w-[26rem] sm:ml-[18%]">
               {/* Centered character cue */}
-              <p className="pl-[3.5rem] font-mono font-bold tracking-[0.12em] text-gold-bright uppercase">
+              <p className="pl-[3.5rem] font-mono font-bold tracking-[0.14em] text-cocoa uppercase">
                 {block.who}
               </p>
               {block.parenthetical ? (
-                <p className="pl-[2.25rem] italic text-muted">
+                <p className="pl-[2.25rem] font-mono text-[0.875rem] italic text-cocoa-muted">
                   ({block.parenthetical})
                 </p>
               ) : null}
               {block.lines.map((line, j) => (
-                <p key={j} className="mt-1 text-cream/90">{line}</p>
+                <p key={j} className="mt-1.5 font-mono leading-[1.65] text-cocoa">
+                  {line}
+                </p>
               ))}
             </div>
           );
         }
 
         return (
-          <p key={i} className="mt-4 max-w-[62ch] font-mono leading-relaxed text-cream/90">
+          <p key={i} className="mt-4 max-w-[64ch] font-mono leading-[1.75] text-cocoa-muted">
             {block.text}
           </p>
         );
