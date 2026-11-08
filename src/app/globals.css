@@ -371,3 +371,41 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------------------------------------------------------------
+   Screenplay Print & PDF Export Stylesheet
+   --------------------------------------------------------------- */
+@media print {
+  header,
+  footer,
+  nav,
+  .print\:hidden,
+  .ambient-glow,
+  .film-grain,
+  .scroll-progress,
+  aside,
+  button {
+    display: none !important;
+  }
+
+  body,
+  main {
+    background: #ffffff !important;
+    color: #111111 !important;
+  }
+
+  .u-screenplay {
+    color: #000000 !important;
+    font-size: 11pt !important;
+    line-height: 1.5 !important;
+    box-shadow: none !important;
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+  }
+
+  @page {
+    margin: 1in;
+    size: portrait;
+  }
+}

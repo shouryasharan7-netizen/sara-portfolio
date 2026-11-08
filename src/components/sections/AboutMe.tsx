@@ -72,6 +72,31 @@ export function AboutMe() {
               Learn more
             </GoldLink>
           </Reveal>
+
+          {/* Director's Craft & Workflow Specs */}
+          <div className="mt-12 pt-8 border-t border-cocoa/15 max-w-[46ch]">
+            <p className="font-mono text-[0.6875rem] uppercase tracking-[0.16em] text-cocoa font-semibold">
+              Director&apos;s Toolkit &amp; Technical Workflow
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-4 text-xs font-mono text-cocoa-muted">
+              <div>
+                <span className="block text-[0.65rem] uppercase text-cocoa/60 tracking-wider">Format &amp; Capture</span>
+                <span className="text-cocoa font-medium">35mm &bull; 4K Digital Cinema</span>
+              </div>
+              <div>
+                <span className="block text-[0.65rem] uppercase text-cocoa/60 tracking-wider">Optics</span>
+                <span className="text-cocoa font-medium">Prime 35mm / 50mm / 85mm</span>
+              </div>
+              <div>
+                <span className="block text-[0.65rem] uppercase text-cocoa/60 tracking-wider">Editorial &amp; Color</span>
+                <span className="text-cocoa font-medium">DaVinci Resolve &bull; Premiere Pro</span>
+              </div>
+              <div>
+                <span className="block text-[0.65rem] uppercase text-cocoa/60 tracking-wider">Audio Delivery</span>
+                <span className="text-cocoa font-medium">5.1 Surround &bull; Stereo Master</span>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

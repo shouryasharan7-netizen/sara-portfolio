@@ -1,9 +1,12 @@
+"use client";
+
 import { Reveal } from "@/components/motion/Reveal";
 import { Wipe } from "@/components/motion/Wipe";
 import { Doodle } from "@/components/ui/Doodle";
 import { Frame } from "@/components/ui/Frame";
 import { GoldLink } from "@/components/ui/GoldLink";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { useCinema } from "@/components/ui/CinemaModal";
 import { experimental } from "@/content/site";
 
 /**
@@ -14,6 +17,8 @@ import { experimental } from "@/content/site";
  * its neighbour.
  */
 export function Experimental() {
+  const { openCinema } = useCinema();
+
   return (
     <section
       aria-labelledby="experimental-label"
@@ -52,22 +57,34 @@ export function Experimental() {
             </Reveal>
 
             {film.poster ? (
-              <Wipe index={i} delay={0.08} className="viewfinder-card relative mt-3 overflow-hidden rounded-[2px] border border-cocoa/15 transition-all hover:border-crimson-bright">
-                <span className="vf-bracket vf-top-left" />
-                <span className="vf-bracket vf-top-right" />
-                <span className="vf-bracket vf-bottom-left" />
-                <span className="vf-bracket vf-bottom-right" />
-                <Frame
-                  src={film.poster}
-                  alt={film.posterAlt}
-                  sizes="(max-width:768px) 45vw, 20vw"
-                  className="aspect-[16/10] w-full transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out-expo)] group-hover:scale-[1.03]"
-                />
+              <Wipe
+                index={i}
+                delay={0.08}
+                className="viewfinder-card relative mt-3 cursor-pointer overflow-hidden rounded-[2px] border border-cocoa/15 transition-all hover:border-crimson-bright"
+              >
+                <div
+                  onClick={() => openCinema({ title: film.title, href: film.href, genre: film.genre })}
+                  aria-label={`Watch ${film.title}`}
+                >
+                  <span className="vf-bracket vf-top-left" />
+                  <span className="vf-bracket vf-top-right" />
+                  <span className="vf-bracket vf-bottom-left" />
+                  <span className="vf-bracket vf-bottom-right" />
+                  <Frame
+                    src={film.poster}
+                    alt={film.posterAlt}
+                    sizes="(max-width:768px) 45vw, 20vw"
+                    className="aspect-[16/10] w-full transition-transform duration-[var(--duration-normal)] ease-[var(--ease-out-expo)] group-hover:scale-[1.03]"
+                  />
+                </div>
               </Wipe>
             ) : null}
 
             <Reveal index={i} delay={0.14} className="mt-4">
-              <GoldLink href={film.href} onLight>
+              <GoldLink
+                onClick={() => openCinema({ title: film.title, href: film.href, genre: film.genre })}
+                onLight
+              >
                 Watch
               </GoldLink>
             </Reveal>

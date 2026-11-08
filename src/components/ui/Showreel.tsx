@@ -10,16 +10,26 @@ type ShowreelProps = {
   className?: string;
 };
 
+function formatSMPTE(seconds: number): string {
+  const mins = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  const frames = Math.floor((seconds % 1) * 24);
+  return `${String(mins).padStart(2, "0")}:${String(secs).padStart(2, "0")}:${String(frames).padStart(2, "0")}`;
+}
+
 /**
  * The showreel, playing in the margin of the hero.
- * Clean, professional, elevated cinema monitor aesthetic.
+ * Upgraded with live SMPTE timecode (24 FPS), interactive scrubber, and theater controls.
  */
 export function Showreel({ src, label, className = "" }: ShowreelProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const scrubberRef = useRef<HTMLDivElement>(null);
   const prefersReducedMotion = useReducedMotion();
 
   const [isPlaying, setIsPlaying] = useState(false);
   const [isMuted, setIsMuted] = useState(true);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -66,6 +76,28 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
     setIsMuted(next);
   };
 
+  const handleTimeUpdate = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    setCurrentTime(video.currentTime);
+    if (!duration && video.duration) {
+      setDuration(video.duration);
+    }
+  };
+
+  const handleScrub = (e: React.MouseEvent<HTMLDivElement>) => {
+    const scrubber = scrubberRef.current;
+    const video = videoRef.current;
+    if (!scrubber || !video || !duration) return;
+
+    const rect = scrubber.getBoundingClientRect();
+    const pos = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+    video.currentTime = pos * duration;
+    setCurrentTime(video.currentTime);
+  };
+
+  const progressPercent = duration ? (currentTime / duration) * 100 : 0;
+
   return (
     <figure className={`group relative ${className}`}>
       {/* Sleek rounded cinema monitor container */}
@@ -86,17 +118,36 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
           preload="metadata"
           onPlay={() => setIsPlaying(true)}
           onPause={() => setIsPlaying(false)}
+          onTimeUpdate={handleTimeUpdate}
+          onLoadedMetadata={() => videoRef.current && setDuration(videoRef.current.duration)}
           className="aspect-[9/16] h-full w-full object-cover"
         />
 
         {/* Gradient scrim for control legibility */}
         <span
           aria-hidden
-          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(20,20,24,0.9)_0%,transparent_100%)]"
+          className="pointer-events-none absolute inset-x-0 bottom-0 h-1/3 bg-[linear-gradient(to_top,rgba(20,20,24,0.92)_0%,transparent_100%)]"
         />
 
+        {/* Interactive Razor-Thin Scrubber Bar */}
+        <div
+          ref={scrubberRef}
+          onClick={handleScrub}
+          title="Click to seek timecode"
+          className="group/scrub absolute inset-x-0 bottom-0 z-30 h-3 cursor-pointer flex items-end"
+        >
+          <div className="h-1 w-full bg-white/20 transition-all group-hover/scrub:h-1.5">
+            <div
+              style={{ width: `${progressPercent}%` }}
+              className="relative h-full bg-crimson-bright shadow-[0_0_8px_rgba(255,59,48,0.8)]"
+            >
+              <span className="absolute -top-1 right-0 size-2.5 rounded-full bg-white opacity-0 transition-opacity group-hover/scrub:opacity-100 shadow-[0_0_6px_rgba(255,59,48,0.9)]" />
+            </div>
+          </div>
+        </div>
+
         {/* Floating play & mute controls */}
-        <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 p-3.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 max-md:opacity-100">
+        <div className="absolute inset-x-0 bottom-2.5 flex items-center justify-between gap-2 p-3.5 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-focus-within:opacity-100 max-md:opacity-100 z-20">
           <ReelButton
             onClick={togglePlay}
             label={isPlaying ? "Pause showreel" : "Play showreel"}
@@ -113,7 +164,7 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
         </div>
       </div>
 
-      {/* Clean, neat, professional monitor status bar */}
+      {/* Clean, neat, professional monitor status bar with live SMPTE timecode */}
       <figcaption className="mt-3.5 flex items-center justify-between px-0.5 text-muted">
         <div className="flex items-center gap-2.5">
           <span className="tally-dot" />
@@ -125,9 +176,16 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
             Directing Cut
           </span>
         </div>
-        <span className="font-mono text-[0.6875rem] tracking-wider text-gold-bright font-medium">
-          24 FPS
-        </span>
+
+        {/* Live SMPTE 24FPS Timecode */}
+        <div className="flex items-center gap-2 font-mono text-[0.6875rem] tracking-wider">
+          <span className="text-muted/60">TC</span>
+          <span className="font-medium text-gold-bright">
+            {formatSMPTE(currentTime)}
+          </span>
+          <span className="text-xs text-muted/40">&bull;</span>
+          <span className="text-muted/80">24 FPS</span>
+        </div>
       </figcaption>
     </figure>
   );

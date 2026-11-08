@@ -6,6 +6,7 @@ import { Wipe } from "@/components/motion/Wipe";
 import { Doodle } from "@/components/ui/Doodle";
 import { Frame } from "@/components/ui/Frame";
 import { SectionLabel } from "@/components/ui/SectionLabel";
+import { useCinema } from "@/components/ui/CinemaModal";
 import { shortFilm } from "@/content/site";
 
 /**
@@ -13,6 +14,8 @@ import { shortFilm } from "@/content/site";
  * Elevated A24-style spotlight card: high contrast, clear hierarchy, dual CTAs.
  */
 export function ShortFilm() {
+  const { openCinema } = useCinema();
+
   return (
     <section
       id="films"
@@ -62,15 +65,15 @@ export function ShortFilm() {
         {/* Dual Elevated Call to Actions — Full touch width on mobile */}
         <div className="mt-8 border-t border-white/10 pt-6">
           <Reveal index={3} className="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4">
-            <a
-              href={shortFilm.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(255,59,48,0.3)] transition-all hover:bg-white hover:text-ink active:scale-95 text-center"
+            <button
+              type="button"
+              onClick={() => openCinema({ title: shortFilm.title, href: shortFilm.href, genre: shortFilm.genre })}
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(255,59,48,0.3)] transition-all hover:bg-white hover:text-ink active:scale-95 text-center cursor-pointer"
             >
+              <span className="size-2 rounded-full bg-white animate-pulse" />
               <span>Watch Film</span>
               <span aria-hidden>&rarr;</span>
-            </a>
+            </button>
             <a
               href="/writing/everything"
               className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-white/25 bg-ink/50 px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-cream backdrop-blur-sm transition-all hover:border-gold-bright hover:text-gold-bright text-center"
