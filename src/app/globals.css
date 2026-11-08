@@ -357,6 +357,14 @@ body {
   line-height: 1.75;
 }
 
+/* Ensure film grain never intercepts clicks or pointer events */
+.film-grain,
+.film-grain svg,
+.film-grain rect {
+  pointer-events: none !important;
+  user-select: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;
