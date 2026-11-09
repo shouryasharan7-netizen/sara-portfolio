@@ -107,7 +107,7 @@ export function Hero() {
               <motion.div {...enter(0.8)} className="mt-8 flex w-full flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-5">
                 <a
                   href="#films"
-                  className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-6 py-3 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_20px_rgba(255,59,48,0.35)] transition-all hover:bg-white hover:text-ink active:scale-95"
+                  className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-6 py-3 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(217,59,47,0.25)] transition-all hover:bg-white hover:text-ink active:scale-95"
                 >
                   <span>Explore Films</span>
                   <span aria-hidden>&rarr;</span>

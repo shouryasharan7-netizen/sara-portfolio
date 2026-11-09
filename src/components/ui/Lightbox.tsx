@@ -190,7 +190,7 @@ export function Lightbox({
             </AnimatePresence>
           </div>
 
-          {/* Caption and paddles. */}
+          {/* Nav paddles without distracting text caption */}
           <div className="flex shrink-0 items-center justify-between gap-4 px-[var(--space-gutter)] py-5">
             <Paddle
               onClick={goPrevious}
@@ -198,9 +198,9 @@ export function Lightbox({
               direction="left"
             />
 
-            <p className="max-w-[46ch] text-center text-[0.8125rem] text-cream/60">
-              {photo.alt}
-            </p>
+            <span className="font-mono text-xs tracking-wider text-muted/60">
+              {index !== null ? `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")}` : ""}
+            </span>
 
             <Paddle
               onClick={goNext}

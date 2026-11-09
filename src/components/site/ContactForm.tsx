@@ -195,7 +195,7 @@ export function ContactForm() {
                 onClick={() => setSubject(type)}
                 className={`min-h-[36px] rounded-full border px-3.5 py-1.5 text-xs transition-all ${
                   isSelected
-                    ? "border-crimson-bright bg-crimson/15 text-crimson-bright font-medium shadow-[0_0_12px_rgba(255,59,48,0.2)]"
+                    ? "border-crimson-bright bg-crimson/15 text-crimson-bright font-medium shadow-[0_0_12px_rgba(217,59,47,0.18)]"
                     : "border-rule-dark bg-ink/40 text-muted hover:border-cream/40 hover:text-cream"
                 }`}
               >
@@ -236,7 +236,7 @@ export function ContactForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="inline-flex min-h-[44px] w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-6 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(255,59,48,0.35)] transition-all hover:bg-white hover:text-ink active:scale-95 disabled:opacity-50"
+          className="inline-flex min-h-[44px] w-full sm:w-auto items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-6 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_14px_rgba(217,59,47,0.22)] transition-all hover:bg-white hover:text-ink active:scale-95 disabled:opacity-50"
         >
           {isSubmitting ? (
             <>

@@ -122,7 +122,7 @@ export function Header() {
             <Link
               href="/#contact"
               onClick={() => setMobileOpen(false)}
-              className="flex w-full items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright py-3 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_20px_rgba(255,59,48,0.35)]"
+              className="flex w-full items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright py-3 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(217,59,47,0.25)]"
             >
               <span>Get in Touch</span>
               <span aria-hidden>&rarr;</span>

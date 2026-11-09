@@ -28,7 +28,7 @@ export function ShortFilm() {
 
       {/* Subtle interior radial glow */}
       <div
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(229,57,53,0.18)_0%,transparent_65%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(217,59,47,0.14)_0%,transparent_65%)]"
         aria-hidden="true"
       />
 
@@ -67,7 +67,7 @@ export function ShortFilm() {
               href={shortFilm.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_16px_rgba(255,59,48,0.3)] transition-all hover:bg-white hover:text-ink active:scale-95 text-center cursor-pointer"
+              className="inline-flex min-h-[44px] items-center justify-center gap-2 rounded-full border border-crimson-bright bg-crimson-bright px-5 py-2.5 text-xs font-semibold tracking-wider uppercase text-white shadow-[0_0_14px_rgba(217,59,47,0.22)] transition-all hover:bg-white hover:text-ink active:scale-95 text-center cursor-pointer"
             >
               <span className="size-2 rounded-full bg-white animate-pulse" />
               <span>Watch Film</span>

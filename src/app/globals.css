@@ -14,11 +14,11 @@
   --color-blush: #F9F3EE;
   --color-blush-soft: #FFFFFF;
 
-  /* Accents — Vivid Cinema Crimson & Radiant 35mm Gold */
-  --color-crimson: #E53935;
-  --color-crimson-bright: #FF3B30;
-  --color-crimson-glow: rgba(255, 59, 48, 0.4);
-  --color-crimson-tint: rgba(255, 59, 48, 0.12);
+  /* Accents — Refined Cinema Crimson & Radiant 35mm Gold */
+  --color-crimson: #C53026;
+  --color-crimson-bright: #D93B2F;
+  --color-crimson-glow: rgba(217, 59, 47, 0.3);
+  --color-crimson-tint: rgba(217, 59, 47, 0.12);
 
   --color-gold: #E5B869;
   --color-gold-bright: #F7D088;
@@ -36,7 +36,7 @@
   /* Hairlines & Card Borders */
   --color-rule-dark: rgba(255, 255, 255, 0.14);
   --color-rule-light: rgba(30, 15, 18, 0.15);
-  --color-rule-crimson: rgba(255, 59, 48, 0.4);
+  --color-rule-crimson: rgba(217, 59, 47, 0.35);
 
   /* Type scale — fluid, editorial */
   --text-eyebrow: 0.75rem;
@@ -128,7 +128,7 @@ body {
   width: 100%;
   max-width: 1400px;
   height: 800px;
-  background: radial-gradient(circle at 50% 20%, rgba(229, 57, 53, 0.15) 0%, rgba(229, 184, 105, 0.1) 40%, transparent 70%);
+  background: radial-gradient(circle at 50% 20%, rgba(217, 59, 47, 0.12) 0%, rgba(229, 184, 105, 0.08) 40%, transparent 70%);
   pointer-events: none;
   z-index: 0;
 }
@@ -160,7 +160,7 @@ body {
 }
 
 .viewfinder-card:hover {
-  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 24px rgba(255, 59, 48, 0.16);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.5), 0 0 24px rgba(217, 59, 47, 0.14);
 }
 
 .vf-bracket {
@@ -227,8 +227,8 @@ body {
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(229, 57, 53, 0.14);
-  border: 1px solid rgba(229, 57, 53, 0.4);
+  background: rgba(217, 59, 47, 0.12);
+  border: 1px solid rgba(217, 59, 47, 0.35);
   padding: 3px 9px;
   border-radius: 9999px;
   font-family: var(--font-typewriter);

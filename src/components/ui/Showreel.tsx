@@ -139,9 +139,9 @@ export function Showreel({ src, label, className = "" }: ShowreelProps) {
           <div className="h-1 w-full bg-white/20 transition-all group-hover/scrub:h-1.5">
             <div
               style={{ width: `${progressPercent}%` }}
-              className="relative h-full bg-crimson-bright shadow-[0_0_8px_rgba(255,59,48,0.8)]"
+              className="relative h-full bg-crimson-bright shadow-[0_0_8px_rgba(217,59,47,0.6)]"
             >
-              <span className="absolute -top-1 right-0 size-2.5 rounded-full bg-white opacity-0 transition-opacity group-hover/scrub:opacity-100 shadow-[0_0_6px_rgba(255,59,48,0.9)]" />
+              <span className="absolute -top-1 right-0 size-2.5 rounded-full bg-white opacity-0 transition-opacity group-hover/scrub:opacity-100 shadow-[0_0_6px_rgba(217,59,47,0.7)]" />
             </div>
           </div>
         </div>

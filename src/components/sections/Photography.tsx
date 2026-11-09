@@ -174,7 +174,7 @@ export function Photography() {
                 onClick={() => setOpenIndex(i)}
                 className={`group/card viewfinder-card relative w-[min(280px,78vw)] shrink-0 cursor-pointer snap-center rounded-lg border bg-ink-soft transition-all duration-500 sm:w-[340px] md:w-[380px] ${
                   isCurrent
-                    ? "scale-[1.01] border-crimson-bright/70 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_24px_rgba(255,59,48,0.2)]"
+                    ? "scale-[1.01] border-crimson-bright/70 shadow-[0_20px_50px_rgba(0,0,0,0.7),0_0_20px_rgba(217,59,47,0.18)]"
                     : "border-white/10 hover:border-crimson-bright/50 hover:shadow-[0_16px_40px_rgba(0,0,0,0.6)]"
                 }`}
               >
@@ -193,7 +193,7 @@ export function Photography() {
                   <span className="font-medium text-gold-bright">KODAK 400</span>
                 </div>
 
-                {/* Frame Image with Zoom & Hover Lighting */}
+                {/* Frame Image with Zoom on Hover */}
                 <div className="relative aspect-[3/4] w-full overflow-hidden bg-black/60">
                   <Frame
                     src={img.src}
@@ -201,25 +201,6 @@ export function Photography() {
                     sizes="(max-width:768px) 80vw, 380px"
                     className="h-full w-full object-cover transition-transform duration-700 ease-[var(--ease-out-expo)] group-hover/card:scale-105"
                   />
-
-                  {/* Gradient Scrim */}
-                  <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-ink/90 via-transparent to-transparent opacity-60 transition-opacity duration-300 group-hover/card:opacity-90" />
-
-                  {/* Hover Caption Card */}
-                  <div className="absolute inset-x-0 bottom-0 p-4 transition-transform duration-300">
-                    <p className="line-clamp-2 text-xs font-medium leading-relaxed text-cream/90">
-                      {img.alt}
-                    </p>
-                    <div className="mt-2.5 flex items-center justify-between font-mono text-[0.65rem] text-gold-bright">
-                      <span className="flex items-center gap-1">
-                        <span>Click to expand</span>
-                        <span aria-hidden>&rarr;</span>
-                      </span>
-                      <span className="rounded border border-white/20 bg-ink/70 px-1.5 py-0.5 uppercase text-cream/80">
-                        View
-                      </span>
-                    </div>
-                  </div>
                 </div>
 
                 {/* Footer Monospace Ticker */}
@@ -253,7 +234,7 @@ export function Photography() {
               aria-label={`Jump to photograph ${i + 1}`}
               className={`h-1.5 rounded-full transition-all duration-300 ${
                 i === activeIndex
-                  ? "w-8 bg-crimson-bright shadow-[0_0_10px_rgba(255,59,48,0.5)]"
+                  ? "w-8 bg-crimson-bright shadow-[0_0_8px_rgba(217,59,47,0.4)]"
                   : "w-2 bg-white/20 hover:bg-white/50"
               }`}
             />
