@@ -1,7 +1,6 @@
 import { Reveal } from "@/components/motion/Reveal";
 import { TapedPrint } from "@/components/motion/TapedPrint";
 import { Doodle } from "@/components/ui/Doodle";
-import { GoldLink } from "@/components/ui/GoldLink";
 import { Polaroid } from "@/components/ui/Polaroid";
 import { ScriptNote } from "@/components/ui/ScriptNote";
 import { SectionLabel } from "@/components/ui/SectionLabel";
@@ -66,12 +65,6 @@ export function AboutMe() {
               </p>
             </Reveal>
           ))}
-
-          <Reveal className="mt-8" delay={0.1}>
-            <GoldLink href={about.moreHref} onLight>
-              Learn more
-            </GoldLink>
-          </Reveal>
         </div>
       </div>
     </section>
